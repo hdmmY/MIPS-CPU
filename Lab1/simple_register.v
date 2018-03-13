@@ -10,15 +10,17 @@
 // Input : in. The input data. It's data width is DATA_WIDTH.
 // Input : clk. The clock.
 // Input : reset. Reset the register value when the reset is 1.
+// Input : enable. When enable is 0, ignore clk.
 // Output : out. Equals to the register's value.
 //
 // Example : 
-//      simple_register #(16) U0(in, out, clk, reset);
+//      simple_register #(16) U0(in, out, clk, enable, reset);
 //      It means a 16 bit width simple register.
 module simple_register(
 in,
 out,
 clk,
+enable,
 reset
 );
 
@@ -27,11 +29,13 @@ parameter DATA_WIDTH = 32;
 input   in;
 input   reset;
 input   clk;
+input   enable;
 output  out;
 
 wire [DATA_WIDTH - 1: 0]    in;
 wire                        reset;
 wire                        clk;
+wire                        enable;
 reg  [DATA_WIDTH - 1: 0]    out;
 
 reg  [DATA_WIDTH - 1: 0]    reg_store;
@@ -41,7 +45,9 @@ initial begin
 end
 
 always @(posedge clk) begin
-    reg_store = in;
+    if (enable == 1'b1) begin
+        reg_store = in;
+    end
 end
 
 always @(in or reset or clk)begin
