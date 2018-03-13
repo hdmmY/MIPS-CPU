@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 // Three bit select multiplexer
 // Parameter : DATA_WIDTH. 
 //      The width of the input data.
