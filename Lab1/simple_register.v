@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 // A simple register. 
 // Details: The register stores a DATA_WIDTH value and emmitted to out data. 
 //      When the clk is posedge, the register store's value is change to the value of in data. 

@@ -28,25 +28,33 @@ module regfile
 	output [DATA_WIDTH -1:0] a0_data
 );
 
-
 	reg [5:0] i;
-	reg [DATA_WIDTH -1:0] regfile [0:31];
-	always@(posedge clk) begin
-		if(rst) begin
-			for(i = 0; i <= 31;i = i + 1)
-				begin
-					regfile[i] <= 0;
-				end
-		end else if(we && waddr != 0) begin
-			regfile[waddr] <= wdata;
+	reg [DATA_WIDTH -1:0] regfile1 [0:31];
+
+	initial begin
+		for (i = 0; i < 32; i = i + 1) begin
+			regfile1[i] = {DATA_WIDTH{1'b0}};
 		end
 	end
-	assign regA = (we && waddr == raddrA)?wdata
-				: (raddrA!=0) ? regfile[raddrA] 
-				:0;
-	assign regB = (we && waddr == raddrB)?wdata
-				:(raddrA!=0) ? regfile[raddrB]
-				:0;
-	assign v0_data = regfile[V0];
-	assign a0_data = regfile[A0];
+
+
+	always@(posedge clk) begin
+		if(rst) begin
+			for(i = 0; i < 32;i = i + 1)
+				begin
+					regfile1[i] = 0;
+				end
+		end else if(we && waddr != 0) begin
+			regfile1[waddr] <= wdata;
+		end
+	end
+	
+	
+	assign regA = regfile1[raddrA];
+	assign regB = regfile1[raddrB];
+	/*assign v0_data = regfile1[V0];
+	assign a0_data = regfile1[A0];*/
+	assign v0_data = 1;
+	assign a0_data = 1;
+
 endmodule //regfile

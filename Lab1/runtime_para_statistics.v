@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 // Record some runtime datas
 //
 // Input : pc_control_sign. Control sign -- "PC" in logsim
@@ -10,7 +12,7 @@
 // Input : RST. "RST" in logsim
 // Output : nocondition_num.  No condition command number -- "无条件分支指令数" in logsim
 // Output : condition_num. Condition command number -- "有条件分支指令数" in logsim
-// Output : condition_success_num. Condition and success command number -- "有条件分支成功跳转" in logsim
+// Output : condition_success_num. Condition and success command number -- "有条件分支成功跳�?" in logsim
 module runtime_para_statistics(
 pc_control_sign,
 beq_control_sign,

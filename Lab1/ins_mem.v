@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 /**
  * @module ins_mem.v
  * @brief instruction cache memory (ROM)

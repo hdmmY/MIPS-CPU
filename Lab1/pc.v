@@ -18,6 +18,9 @@
  	input [DATA_WIDTH-1:0] din,
  	output reg [DATA_WIDTH-1:0] dout
  );
+	 initial begin
+		dout={DATA_WIDTH{1'b0}};
+	 end
 
  	always@ (posedge clk) begin
  		if(rst) begin

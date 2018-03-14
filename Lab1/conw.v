@@ -64,34 +64,34 @@ assign a26=(op==6'he);
 assign a27=(op==6'h20);//LB
 assign a28=(op==6'h1);//BGEZ
 
-mux_1_select #(23) mux_control_1(.data0(23'h0),.data1(23'h15),.out(b1),.select(a1),.enable(0));
-mux_1_select #(23) mux_control_2(.data0(23'h0),.data1(23'h8095),.out(b2),.select(a2),.enable(0));
-mux_1_select #(23) mux_control_3(.data0(23'h0),.data1(23'h8095),.out(b3),.select(a3),.enable(0));
-mux_1_select #(23) mux_control_4(.data0(23'h0),.data1(23'h15),.out(b4),.select(a4),.enable(0));
-mux_1_select #(23) mux_control_5(.data0(23'h0),.data1(23'h17),.out(b5),.select(a5),.enable(0));
-mux_1_select #(23) mux_control_6(.data0(23'h0),.data1(23'h9497),.out(b6),.select(a6),.enable(0));
-mux_1_select #(23) mux_control_7(.data0(23'h0),.data1(23'h40490),.out(b7),.select(a7),.enable(0));
-mux_1_select #(23) mux_control_8(.data0(23'h0),.data1(23'h40491),.out(b8),.select(a8),.enable(0));
-mux_1_select #(23) mux_control_9(.data0(23'h0),.data1(23'h40492),.out(b9),.select(a9),.enable(0));
-mux_1_select #(23) mux_control_10(.data0(23'h0),.data1(23'h16),.out(b10),.select(a10),.enable(0));
-mux_1_select #(23) mux_control_11(.data0(23'h0),.data1(23'h18),.out(b11),.select(a11),.enable(0));
-mux_1_select #(23) mux_control_12(.data0(23'h0),.data1(23'h9498),.out(b12),.select(a12),.enable(0));
-mux_1_select #(23) mux_control_13(.data0(23'h0),.data1(23'h1a),.out(b13),.select(a13),.enable(0));
-mux_1_select #(23) mux_control_14(.data0(23'h0),.data1(23'ha0d5),.out(b14),.select(a14),.enable(0));
-mux_1_select #(23) mux_control_15(.data0(23'h0),.data1(23'he5),.out(b15),.select(a15),.enable(0));
-mux_1_select #(23) mux_control_16(.data0(23'h0),.data1(23'h200806),.out(b16),.select(a16),.enable(0));
-mux_1_select #(23) mux_control_17(.data0(23'h0),.data1(23'h200806),.out(b17),.select(a17),.enable(0));
-mux_1_select #(23) mux_control_18(.data0(23'h0),.data1(23'h1b),.out(b18),.select(a18),.enable(0));
-mux_1_select #(23) mux_control_19(.data0(23'h0),.data1(23'h809b),.out(b19),.select(a19),.enable(0));
-mux_1_select #(23) mux_control_20(.data0(23'h0),.data1(23'h1c),.out(b20),.select(a20),.enable(0));
-mux_1_select #(23) mux_control_21(.data0(23'h0),.data1(23'h400c00),.out(b21),.select(a21),.enable(0));
-mux_1_select #(23) mux_control_22(.data0(23'h0),.data1(23'h410f15),.out(b22),.select(a22),.enable(0));
-mux_1_select #(23) mux_control_23(.data0(23'h0),.data1(23'h600000),.out(b23),.select(a23),.enable(0));
-mux_1_select #(23) mux_control_24(.data0(23'h0),.data1(23'h0a1086),.out(b24),.select(a24),.enable(0));
-mux_1_select #(23) mux_control_25(.data0(23'h0),.data1(23'h16),.out(b25),.select(a25),.enable(0));
-mux_1_select #(23) mux_control_26(.data0(23'h0),.data1(23'h949a),.out(b26),.select(a26),.enable(0));
-mux_1_select #(23) mux_control_27(.data0(23'h0),.data1(23'hc0d5),.out(b27),.select(a27),.enable(0));
-mux_1_select #(23) mux_control_28(.data0(23'h0),.data1(23'h200986),.out(b28),.select(a28),.enable(0));
+mux_1_select #(23) mux_control_1(.data0(23'h0),.data1(23'h15),.out(b1),.select(a1),.enable(1'b0));
+mux_1_select #(23) mux_control_2(.data0(23'h0),.data1(23'h8095),.out(b2),.select(a2),.enable(1'b0));
+mux_1_select #(23) mux_control_3(.data0(23'h0),.data1(23'h8095),.out(b3),.select(a3),.enable(1'b0));
+mux_1_select #(23) mux_control_4(.data0(23'h0),.data1(23'h15),.out(b4),.select(a4),.enable(1'b0));
+mux_1_select #(23) mux_control_5(.data0(23'h0),.data1(23'h17),.out(b5),.select(a5),.enable(1'b0));
+mux_1_select #(23) mux_control_6(.data0(23'h0),.data1(23'h9497),.out(b6),.select(a6),.enable(1'b0));
+mux_1_select #(23) mux_control_7(.data0(23'h0),.data1(23'h40490),.out(b7),.select(a7),.enable(1'b0));
+mux_1_select #(23) mux_control_8(.data0(23'h0),.data1(23'h40491),.out(b8),.select(a8),.enable(1'b0));
+mux_1_select #(23) mux_control_9(.data0(23'h0),.data1(23'h40492),.out(b9),.select(a9),.enable(1'b0));
+mux_1_select #(23) mux_control_10(.data0(23'h0),.data1(23'h16),.out(b10),.select(a10),.enable(1'b0));
+mux_1_select #(23) mux_control_11(.data0(23'h0),.data1(23'h18),.out(b11),.select(a11),.enable(1'b0));
+mux_1_select #(23) mux_control_12(.data0(23'h0),.data1(23'h9498),.out(b12),.select(a12),.enable(1'b0));
+mux_1_select #(23) mux_control_13(.data0(23'h0),.data1(23'h1a),.out(b13),.select(a13),.enable(1'b0));
+mux_1_select #(23) mux_control_14(.data0(23'h0),.data1(23'ha0d5),.out(b14),.select(a14),.enable(1'b0));
+mux_1_select #(23) mux_control_15(.data0(23'h0),.data1(23'he5),.out(b15),.select(a15),.enable(1'b0));
+mux_1_select #(23) mux_control_16(.data0(23'h0),.data1(23'h200806),.out(b16),.select(a16),.enable(1'b0));
+mux_1_select #(23) mux_control_17(.data0(23'h0),.data1(23'h200806),.out(b17),.select(a17),.enable(1'b0));
+mux_1_select #(23) mux_control_18(.data0(23'h0),.data1(23'h1b),.out(b18),.select(a18),.enable(1'b0));
+mux_1_select #(23) mux_control_19(.data0(23'h0),.data1(23'h809b),.out(b19),.select(a19),.enable(1'b0));
+mux_1_select #(23) mux_control_20(.data0(23'h0),.data1(23'h1c),.out(b20),.select(a20),.enable(1'b0));
+mux_1_select #(23) mux_control_21(.data0(23'h0),.data1(23'h400c00),.out(b21),.select(a21),.enable(1'b0));
+mux_1_select #(23) mux_control_22(.data0(23'h0),.data1(23'h410f15),.out(b22),.select(a22),.enable(1'b0));
+mux_1_select #(23) mux_control_23(.data0(23'h0),.data1(23'h600000),.out(b23),.select(a23),.enable(1'b0));
+mux_1_select #(23) mux_control_24(.data0(23'h0),.data1(23'h0a1086),.out(b24),.select(a24),.enable(1'b0));
+mux_1_select #(23) mux_control_25(.data0(23'h0),.data1(23'h16),.out(b25),.select(a25),.enable(1'b0));
+mux_1_select #(23) mux_control_26(.data0(23'h0),.data1(23'h949a),.out(b26),.select(a26),.enable(1'b0));
+mux_1_select #(23) mux_control_27(.data0(23'h0),.data1(23'hc0d5),.out(b27),.select(a27),.enable(1'b0));
+mux_1_select #(23) mux_control_28(.data0(23'h0),.data1(23'h200986),.out(b28),.select(a28),.enable(1'b0));
 
 always@(*)
 begin

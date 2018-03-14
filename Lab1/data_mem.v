@@ -13,7 +13,7 @@
 * @output rdata data read out from memory
 */
 module data_mem
-#(parameter DATA_WIDTH = 32, BUS_WIDTH = 20)
+#(parameter DATA_WIDTH = 32, BUS_WIDTH = 10)
 (
 	input clk,
 	input MEMread,
