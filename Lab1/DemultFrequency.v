@@ -16,48 +16,53 @@ module DemultFrequency (
     output reg display_Freq,
     output reg [15:0] Cycles   //total cycles run
 );
-    integer m=0, n=0;
+    integer m=0, n=0, k=0;
+    
     initial 
     begin
         Fra_Freq = 0;
         display_Freq = 0;
         Cycles = 16'b0; 
     end
-    always @(posedge rst_n)
-    begin
-        Cycles <= 16'b0;
-        m <= 0;
-        n <= 0;
-    end
 
-    always @(posedge Sys_Clk)
+
+    always @(rst_n or  Sys_Clk or Fre_Choice)
     begin
-        if(n == 100000)
-        begin
-            n <= 0;
+        /*reset*/
+        if(rst_n) begin
+            Cycles = 16'b0;
+            m = 0;
+            n = 0;
+			k = 0;
+        end else if(n == 100000) begin
+            n = 0;
             display_Freq = ~display_Freq;
+        end else begin
+            n = n+1;
         end
-        else
-            n <= n+1;
-    end
-
-    always @(posedge Sys_Clk or Fre_Choice)
-    begin 
+        
+        /*fra freq*/
         if(Fre_Choice)
         begin
             if(m==1562500)
-            begin
-                m<=0;
+            begin 
+                m = 0;
                 Fra_Freq = ~Fra_Freq;
-                Cycles <= Cycles+1;
+                Cycles = Cycles+1;
             end
             else
-                m<=m+1;
+                m=m+1;
         end
         else
         begin
-            Fra_Freq <= ~Fra_Freq;
-            Cycles <= Cycles+1;
+			if(k==4)
+			begin
+            Fra_Freq = ~Fra_Freq;
+            Cycles = Cycles+1;
+            k = 0;
+			end
+			else
+				k = k+1;
         end
     end
 endmodule

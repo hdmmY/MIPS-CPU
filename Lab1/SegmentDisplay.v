@@ -31,15 +31,23 @@ module SegmentDisplay (
     
     `define _display32bit (((select<=3'b010) || (select==3'b111)))
     `define _display16bit (((select>=3'b011) && (select<=3'b110)))
-    reg [3:0] temp = num0;
-    reg [2:0] Scan_num = 3'b000;
+
+    reg [2:0] Scan_num;
+    reg [3:0] temp;
+    // reg [3:0] temp = num0;
     reg [31:0] reg32temp;
     reg [15:0] reg16temp;
+
+    initial begin
+        temp = num0;
+        // reg [3:0] temp = num0;
+        Scan_num = 3'b000;
+    end
 
     /*Scanning for the LEDs to illuminate*/
     always @(posedge clk)
     begin
-        Scan_num <= Scan_num + 1; //Circulally scanning
+        Scan_num = Scan_num + 1; //Circulally scanning
     end
     
     /*select display pattern, display:normal output when @select == 0; memval when 1;
@@ -47,28 +55,28 @@ module SegmentDisplay (
     always @(select or register or memval or PC or Cycles or nocondition_num or condition_num or condition_success_num)
     begin
         case(select)
-            3'b000: reg32temp <= register;
-            3'b001: reg32temp <= memval;
-            3'b010: reg32temp <= PC;
-            3'b011: reg16temp <= Cycles;
-            3'b100: reg16temp <= nocondition_num;
-            3'b101: reg16temp <= condition_num;
-            3'b110: reg16temp <= condition_success_num;
-            3'b111: reg32temp <= register;
+            3'b000: reg32temp = register;
+            3'b001: reg32temp = memval;
+            3'b010: reg32temp = PC;
+            3'b011: reg16temp = Cycles;
+            3'b100: reg16temp = nocondition_num;
+            3'b101: reg16temp = condition_num;
+            3'b110: reg16temp = condition_success_num;
+            3'b111: reg32temp = register;
         endcase // select
     end
 
     always @(Scan_num)
     begin
         case(Scan_num)
-            3'b000: LED<=8'b11111110;
-            3'b001: LED<=8'b11111101;
-            3'b010: LED<=8'b11111011;
-            3'b011: LED<=8'b11110111;
-            3'b100: LED<=8'b11101111;
-            3'b101: LED<=8'b11011111;
-            3'b110: LED<=8'b10111111;
-            3'b111: LED<=8'b01111111;  
+            3'b000: LED=8'b11111110;
+            3'b001: LED=8'b11111101;
+            3'b010: LED=8'b11111011;
+            3'b011: LED=8'b11110111;
+            3'b100: LED=8'b11101111;
+            3'b101: LED=8'b11011111;
+            3'b110: LED=8'b10111111;
+            3'b111: LED=8'b01111111;  
         endcase // Scan_num
     end
 
@@ -77,73 +85,73 @@ module SegmentDisplay (
         if(!LED[0])
         begin
             if(`_display32bit)
-                temp <= reg32temp[3:0];
+                temp = reg32temp[3:0];
             else if(`_display16bit)
-                temp <= reg16temp[3:0];
+                temp = reg16temp[3:0];
         end
         else if(!LED[1])
         begin
             if(`_display32bit)
-                temp <= reg32temp[7:4];
+                temp = reg32temp[7:4];
             else if(`_display16bit)
-                temp <= reg16temp[7:4];
+                temp = reg16temp[7:4];
         end
         else if(!LED[2])
         begin
             if(`_display32bit)
-                temp <= reg32temp[11:8];
+                temp = reg32temp[11:8];
             else if(`_display16bit)
-                temp <= reg16temp[11:8];
+                temp = reg16temp[11:8];
         end
         else if(!LED[3])
         begin
             if(`_display32bit)
-                temp <= reg32temp[15:12];
+                temp = reg32temp[15:12];
             else if(`_display16bit)
-                temp <= reg16temp[15:12];
+                temp = reg16temp[15:12];
         end
         else if(!LED[4])
         begin
             if(`_display32bit)
-                temp <= reg32temp[19:16];
+                temp = reg32temp[19:16];
         end
         else if(!LED[5])
         begin
             if(`_display32bit)
-                temp <= reg32temp[23:20];
+                temp = reg32temp[23:20];
         end
         else if(!LED[6])
         begin
             if(`_display32bit)
-                temp <= reg32temp[27:21];
+                temp = reg32temp[27:24];
         end
         else if(!LED[7])
         begin
             if(`_display32bit)
-                temp <= reg32temp[31:28];
+                temp = reg32temp[31:28];
         end
 
         case(temp)
-                num0: Segment<=dig0;
-                num1: Segment<=dig1;
-                num2: Segment<=dig2;
-                num3: Segment<=dig3;
-                num4: Segment<=dig4;
-                num5: Segment<=dig5;
-                num6: Segment<=dig6;
-                num7: Segment<=dig7;
-                num8: Segment<=dig8;
-                num9: Segment<=dig9;
-                num10: Segment<=dig10;
-                num11: Segment<=dig11;
-                num12: Segment<=dig12;
-                num13: Segment<=dig13;
-                num14: Segment<=dig14;
-                num15: Segment<=dig15;
+                num0: Segment=dig0;
+                num1: Segment=dig1;
+                num2: Segment=dig2;
+                num3: Segment=dig3;
+                num4: Segment=dig4;
+                num5: Segment=dig5;
+                num6: Segment=dig6;
+                num7: Segment=dig7;
+                num8: Segment=dig8;
+                num9: Segment=dig9;
+                num10: Segment=dig10;
+                num11: Segment=dig11;
+                num12: Segment=dig12;
+                num13: Segment=dig13;
+                num14: Segment=dig14;
+                num15: Segment=dig15;
         endcase
 
-        if(!LED[4] || !LED[5] || LED [6] || LED[7])
+        if(!LED[4] || !LED[5] || !LED [6] || !LED[7])
             if(`_display16bit)
-                Segment <= dim;
+                Segment = dim;
     end
 endmodule

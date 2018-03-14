@@ -1,10 +1,14 @@
 #System Clock
-set_property PACKAGE_PIN E3 [get_ports Sys_Clk]
-set_property IOSTANDARD LVCMOS33 [get_ports Sys_Clk]
+set_property PACKAGE_PIN E3 [get_ports clk]
+set_property IOSTANDARD LVCMOS33 [get_ports clk]
 
 #RstAsynchronous reset active low
-set_property PACKAGE_PIN P18 [get_ports rst_n]
-set_property IOSTANDARD LVCMOS33 [get_ports  rst_n]
+set_property PACKAGE_PIN P18 [get_ports RST]
+set_property IOSTANDARD LVCMOS33 [get_ports  RST]
+
+#stop button
+set_property PACKAGE_PIN U11 [get_ports stop_button]
+set_property IOSTANDARD LVCMOS33 [get_ports  stop_button]
 
 #choose system frequency
 set_property PACKAGE_PIN V10 [get_ports Fre_Choice]
@@ -24,7 +28,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports address[0]]
 set_property PACKAGE_PIN T8 [get_ports address[1]]
 set_property IOSTANDARD LVCMOS33 [get_ports address[1]]
 set_property PACKAGE_PIN U8 [get_ports address[2]]
-set_property IOSTANDARD LVCMOS33 [get_ports address[2]
+set_property IOSTANDARD LVCMOS33 [get_ports address[2]]
 set_property PACKAGE_PIN R16 [get_ports address[3]]
 set_property IOSTANDARD LVCMOS33 [get_ports address[3]]
 
@@ -66,3 +70,7 @@ set_property PACKAGE_PIN J18 [get_ports {LED[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {LED[1]}]
 set_property PACKAGE_PIN J17 [get_ports {LED[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {LED[0]}]
+
+set_property SEVERITY {Warning} [get_drc_checks LUTLP-1]
+#set_property CONFIG_VOLTAGE 2.5 [current_design]
+#set_property CFGBVS VCCO [current_design]

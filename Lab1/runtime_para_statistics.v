@@ -65,9 +65,9 @@ wire tmp_pc_2;
 
 or U0(tmp_or_1, tmp_pc_1, tmp_pc_2);
 or U1(tmp_or_2, beq_control_sign, bne_control_sign, bgez_control_sign);
-and U2(tmp_and_1, tmp_or_1, halt_sign);
-and U3(tmp_and_2, tmp_or_2, halt_sign);
-and U4(tmp_and_3, b_success_sign, halt_sign);
+and U2(tmp_and_1, tmp_or_1, (~halt_sign));
+and U3(tmp_and_2, tmp_or_2, (~halt_sign));
+and U4(tmp_and_3, b_success_sign, (~halt_sign));
 
 initial begin
     nocondition_num = 16'd0;

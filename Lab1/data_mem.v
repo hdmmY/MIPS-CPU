@@ -18,13 +18,17 @@ module data_mem
 	input clk,
 	input MEMread,
 	input MEMwrite,
+	input [3:0] address,
 	input [BUS_WIDTH-1:0] A,
 	input [DATA_WIDTH-1:0] D,
 	input RST,
-	output [DATA_WIDTH-1:0] rdata
+	output [DATA_WIDTH-1:0] rdata,
+	output [DATA_WIDTH-1:0] display_data
 );
 	reg [DATA_WIDTH-1:0] RAM [0:(2**BUS_WIDTH)-1];
 	reg [(2**BUS_WIDTH)-1:0] i;
+	wire [9:0] ADDRESS_expand;
+	assign ADDRESS_expand = { {6'b0},address};
 	always @(posedge clk) begin
 		if(MEMwrite) begin
 			RAM[A] <= D;
@@ -37,6 +41,7 @@ module data_mem
 		end
 	end
 	assign rdata = MEMread ?RAM[A] : {(DATA_WIDTH){1'b0}};
+	assign display_data = RAM[ADDRESS_expand];
 endmodule
 
 

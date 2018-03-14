@@ -7,6 +7,7 @@ reg clk;
 reg RST;
 reg stop_button;
 wire [31:0] SyscallOut;
+//wire[15:0] nocondition_num, condition_num, condition_success_num;
 
 datapath datapath1(clk, RST, stop_button, SyscallOut);
 
