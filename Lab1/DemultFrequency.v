@@ -12,6 +12,7 @@ module DemultFrequency (
     input Sys_Clk,    // System Clock
     input Fre_Choice,   //choose which fre to use
     input rst_n,     // Asynchronous reset active low
+    input stop_button,  //Stop button
     output reg Fra_Freq,  // Fractional Frequency similar to logisim
     output reg display_Freq,
     output reg [15:0] Cycles   //total cycles run
@@ -29,19 +30,16 @@ module DemultFrequency (
         display_Freq = 0;
         Cycles = 16'b0; 
     end
-
+ 
 
     always @(posedge Sys_Clk)
     begin
         /*reset*/
         if(rst_n) begin
             Cycles = 16'b0;
-            m = 32'd0;
-            n = 32'd0;
-			k = 32'd0;
         end
         
-        if(n == 32'd200000) begin
+        if(n == 32'd50_000) begin
             n = 32'd0;
             display_Freq = ~display_Freq;
         end else begin
@@ -51,25 +49,31 @@ module DemultFrequency (
         /*fra freq*/
         if(Fre_Choice)
         begin
-            if(m == 32'd1562500)
-            begin 
-                m = 32'd0;
-                Fra_Freq = ~Fra_Freq;
-                Cycles = Cycles+1;
+            if(!stop_button)
+            begin
+                if(m == 32'd25_000_000)
+                begin 
+                    m = 32'd0;
+                    Fra_Freq = ~Fra_Freq;
+                    Cycles = Cycles+1;
+                end
+                else
+                    m=m+1;
             end
-            else
-                m=m+1;
         end
         else
         begin
-			if(k == 32'd4)
-			begin
-            Fra_Freq = ~Fra_Freq;
-            Cycles = Cycles+1;
-            k = 32'd0;
-			end
-			else
-				k = k+1;
+            if(!stop_button)
+            begin
+                if(k == 32'd4)
+                begin
+                    Fra_Freq = ~Fra_Freq;
+                    Cycles = Cycles+1;
+                    k = 32'd0;
+                end
+                else
+				    k = k+1;
+            end
         end
     end
 endmodule

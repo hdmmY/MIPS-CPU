@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Module Name: datapath(Êý¾ÝÍ¨Â·)
-//ÊäÈë£ºRST,clk,stop_button(Í£Ö¹°´Å¥)
-//Êä³ö£ºSyscallOut
+// Module Name: datapath(ï¿½ï¿½ï¿½ï¿½Í¨Â·)
+//ï¿½ï¿½ï¿½ë£ºRST,clk,stop_button(Í£Ö¹ï¿½ï¿½Å¥)
+//ï¿½ï¿½ï¿½ï¿½ï¿½SyscallOut
 //////////////////////////////////////////////////////////////////////////////////
 module datapath(clk, RST, stop_button, Fre_Choice, select, address, LED, Segment);
 input clk;
@@ -103,6 +103,6 @@ mux_2_select mux_2_select_PC(PC_add4, PC_select1, {PC_28_31, S_EXT[25:0], 2'h0},
 
 runtime_para_statistics runtime_para_statistics1(PC, beq, bne, bgez, b_jump_success, halt, Fra_Freq, RST, nocondition_num, condition_num, condition_success_num);
 
-DemultFrequency DemultFrequency1(clk, Fre_Choice, RST, Fra_Freq, display_Freq,  Cycles);
+DemultFrequency DemultFrequency1(clk, Fre_Choice, RST, stop_button, Fra_Freq, display_Freq,  Cycles);
 SegmentDisplay SegmentDisplay1(SyscallOut, display_data, pc_dout, Cycles, nocondition_num, condition_num, condition_success_num, display_Freq, RST, select, LED, Segment);
 endmodule
