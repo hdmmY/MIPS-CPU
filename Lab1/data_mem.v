@@ -28,6 +28,12 @@ module data_mem
 	reg [DATA_WIDTH-1:0] RAM [0:(2**BUS_WIDTH)-1];
 	reg [(2**BUS_WIDTH)-1:0] i;
 	wire [9:0] ADDRESS_expand;
+	initial begin
+		for(i=0;i<2**BUS_WIDTH;i=i+1)
+			begin
+				RAM[i]=0;
+			end
+	end
 	assign ADDRESS_expand = { {6'b0},address};
 	always @(posedge clk) begin
 		if(MEMwrite) begin
