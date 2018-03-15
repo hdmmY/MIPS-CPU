@@ -46,19 +46,14 @@ initial begin
     reg_store = {DATA_WIDTH{1'b0}};
 end
 
-always @(posedge clk) begin
-    if (enable == 1'b1) begin
+always @(posedge clk)begin
+    if (reset == 1'b1) begin
+      reg_store = {DATA_WIDTH{1'b0}};
+    end else if (enable == 1'b1) begin
         reg_store = in;
     end
+
+     out = reg_store;
 end
 
-always @(in or reset or clk)begin
-    if (reset == 1'b1) begin
-        reg_store = {DATA_WIDTH{1'b0}};
-        out = {DATA_WIDTH{1'b0}};
-    end else begin
-        out = reg_store;
-    end
-end
-
-endmodule // simple_register    
+endmodule // simple_register 

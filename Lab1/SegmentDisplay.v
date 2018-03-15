@@ -29,8 +29,8 @@ module SegmentDisplay (
     parameter num5=4'b0101, num6=4'b0110, num7=4'b0111, num8=4'b1000, num9=4'b1001;
     parameter num10=4'b1010, num11=4'b1011, num12=4'b1100, num13=4'b1101, num14=4'b1110, num15=4'b1111;
     
-    `define _display32bit (((select<=3'b010) || (select==3'b111)))
-    `define _display16bit (((select>=3'b011) && (select<=3'b110)))
+    `define _display32bit (((select<3'b011) || (select==3'b111)))
+    `define _display16bit (((select>=3'b011) && (select<3'b111)))
 
     reg [2:0] Scan_num;
     reg [3:0] temp;
@@ -42,6 +42,7 @@ module SegmentDisplay (
         temp = num0;
         // reg [3:0] temp = num0;
         Scan_num = 3'b000;
+      
     end
 
     /*Scanning for the LEDs to illuminate*/
@@ -52,7 +53,7 @@ module SegmentDisplay (
     
     /*select display pattern, display:normal output when @select == 0; memval when 1;
     PC when 3; Cycles when 4;nocondition_num when 5, condition_num when 6, condition_success_num when 7*/
-    always @(select or register or memval or PC or Cycles or nocondition_num or condition_num or condition_success_num)
+    always @(select)
     begin
         case(select)
             3'b000: reg32temp = register;
@@ -62,7 +63,7 @@ module SegmentDisplay (
             3'b100: reg16temp = nocondition_num;
             3'b101: reg16temp = condition_num;
             3'b110: reg16temp = condition_success_num;
-            3'b111: reg32temp = register;
+            3'b111: reg32temp = 32'b1111_1111_1111_1111_1111_1111_1111_1111;
         endcase // select
     end
 
